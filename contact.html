@@ -364,8 +364,79 @@
             </div>
         </div>
 
-         <!-- footer Section start --> 
-        <!-- Footer Section Start -->
+<!-- ===== FIXED ADMISSION POPUP - GitHub Pages Working ===== -->
+<div id="admissionPopup" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999; display:none; align-items:center; justify-content:center; padding:15px;">
+    <div id="admissionOverlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);"></div>
+    <div style="position:relative; background:white; width:100%; max-width:450px; border-radius:25px; padding:30px; box-shadow:0 20px 60px rgba(0,0,0,0.3); max-height:90vh; overflow-y:auto;">
+        <button id="closeAdmission" style="position:absolute; top:15px; right:15px; width:35px; height:35px; background:#f2f2f2; border:none; border-radius:50%; font-size:22px; cursor:pointer;">×</button>
+        <div class="text-center mb-3">
+            <span style="background:#FFF0E6; color:#FF6B35; padding:6px 18px; border-radius:20px; font-size:12px; font-weight:700;">ADMISSION OPEN 2026-27</span>
+            <h3 class="mt-3 mb-1">Quick Enquiry Form</h3>
+            <p style="font-size:13px; color:#777;">Fill karein, 30 min me call ayega!</p>
+        </div>
+        <form id="popupAdmissionForm">
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <input type="text" required placeholder="Child Name *" style="height:50px; border-radius:12px; background:#f8f8f8; border:1px solid #eee; padding:0 15px; width:100%;">
+                <div style="display:flex; gap:12px;">
+                    <input type="text" required placeholder="Parent Name *" style="height:50px; border-radius:12px; background:#f8f8f8; border:1px solid #eee; padding:0 15px; width:50%;">
+                    <input type="tel" required placeholder="Mobile Number *" pattern="[0-9]{10}" style="height:50px; border-radius:12px; background:#f8f8f8; border:1px solid #eee; padding:0 15px; width:50%;">
+                </div>
+                <select required style="height:50px; border-radius:12px; background:#f8f8f8; border:1px solid #eee; padding:0 15px; width:100%;">
+                    <option value="">Select Class *</option>
+                    <option>Play Group (1.5-2.5 Yrs)</option>
+                    <option>Pre-Nursery (2.5-3.5 Yrs)</option>
+                    <option>Nursery (3.5-4.5 Yrs)</option>
+                    <option>KG (4.5-5.5 Yrs)</option>
+                    <option>Day Care</option>
+                </select>
+                <textarea placeholder="Message (Optional)" rows="2" style="border-radius:12px; background:#f8f8f8; border:1px solid #eee; padding:10px 15px; width:100%;"></textarea>
+                <button type="submit" style="width:100%; height:50px; background:#FF6B35; color:white; border:none; border-radius:12px; font-weight:600; cursor:pointer;">Submit Now</button>
+                <p style="text-align:center; font-size:10px; color:#999; margin:0;">🔒 100% Safe & Secure</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// GitHub Pages Fix
+window.addEventListener('load', function() {
+    var popup = document.getElementById('admissionPopup');
+    var overlay = document.getElementById('admissionOverlay');
+    var closeBtn = document.getElementById('closeAdmission');
+    
+    function openPopup(e){
+        if(e) e.preventDefault();
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closePopup(){
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    // Saare Admission buttons ko pakdo
+    document.querySelectorAll('a').forEach(function(a){
+        var txt = a.textContent.toLowerCase();
+        if(txt.includes('admission open') || txt.includes('admission')){
+            a.addEventListener('click', openPopup);
+        }
+    });
+
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', closePopup);
+
+    document.getElementById('popupAdmissionForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        alert('Thank you! Form submitted. Team jaldi call karegi.');
+        closePopup();
+        this.reset();
+    });
+});
+</script>
+<!-- ===== FIXED END ===== -->
+
+<!-- Admission Form Popup Modal End -->
+          <!-- Footer Section Start -->
         <footer class="footer-section footer-section-three fix">
             <div class="sky-shape">
                 <img src="assets/img/footer/sky2.png" alt="shape-img">
@@ -413,7 +484,7 @@
                                 <div class="widget-content">
                                     <ul class="list-area list-area-3">
                                         <li><a href="program.html"><i class="fas fa-angle-double-right"></i>Our Programs</a></li>
-                                        <li><a href="news.html"><i class="fas fa-angle-double-right"></i> Our Blogs</a></li>
+                                        <li><a href="activities.html"><i class="fas fa-angle-double-right"></i> Activities</a></li>
                                         <li><a href="faq.html"><i class="fas fa-angle-double-right"></i> FAQ’S</a></li>
                                         <li><a href="contact.html"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
                                     </ul>
@@ -532,9 +603,9 @@
         <script src="assets/js/SplitText.min.js"></script>
         <!--<< splitType Js >>-->
         <script src="assets/js/splitType.js"></script>
-        <!--<< Ajax Mail.js >>-->
-        <script src="assets/js/ajax-mail.js"></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
+        
+
     </body>
 </html>

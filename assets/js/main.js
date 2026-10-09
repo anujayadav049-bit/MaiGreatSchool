@@ -623,38 +623,3 @@
     
 })(jQuery); // End jQuery
 
-
-/*admistionform*/
-
-
-
-document.addEventListener('DOMContentLoaded', function(){
-    const popup = document.getElementById('admissionPopup');
-    const overlay = popup.querySelector('.admission-modal-overlay');
-    const closeBtn = popup.querySelector('.admission-close-btn');
-
-    // Header ke saare Admission buttons pe lag jayega
-    document.querySelectorAll('a').forEach(function(btn){
-        if(btn.textContent.toLowerCase().includes('admission open') || btn.textContent.toLowerCase().includes('get started')){
-            btn.addEventListener('click', function(e){
-                e.preventDefault();
-                popup.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-    });
-
-    function closePopup(){
-        popup.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    closeBtn.addEventListener('click', closePopup);
-    overlay.addEventListener('click', closePopup);
-
-    document.getElementById('popupAdmissionForm').addEventListener('submit', function(e){
-        e.preventDefault();
-        alert('Thank you! Form submitted. Hamari team aapko jaldi call karegi.');
-        closePopup();
-        this.reset();
-    });
-});
